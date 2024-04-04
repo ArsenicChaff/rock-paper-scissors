@@ -34,5 +34,20 @@
 
 let userInput = prompt("Rock, paper, or scissors?")
 userInput = userInput.toLowerCase()
-
 console.log(userInput)
+
+
+//block of code below build the computer variable using a random number generator and assigning each value a specific option
+let randomVar = Math.floor(Math.random() * 3)
+let comInput;
+if (randomVar === 0) {
+    comInput = 'rock';
+} else if (randomVar === 1) {
+    comInput = 'paper';
+} else if (randomVar === 2) {
+    comInput = 'scissors';
+} else {
+    console.log('comInput error')
+}
+console.log(comInput)
+//end block
