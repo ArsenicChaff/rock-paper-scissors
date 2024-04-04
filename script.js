@@ -32,9 +32,20 @@
 //  break the loop when computer wins 3 times
 //  break the loop if the game runs 5 times. (should be impossible, but just in case)
 
-let userInput = prompt("Rock, paper, or scissors?")
-userInput = userInput.toLowerCase()
-console.log(userInput)
+let userInput;
+// userInput = userInput.toLowerCase()
+function userInputSelection () {
+    userInput = prompt("Rock, paper, or scissors?")
+    userInput = userInput.toLowerCase();
+    if ((userInput === 'rock') || (userInput === 'paper') || (userInput === 'scissors')) {
+        return userInput && true;
+    } else {
+        console.log('please enter a correct option');
+        return false;
+    }
+}
+userInput = userInputSelection()
+console.log(userInput);
 
 
 //block of code below build the computer variable using a random number generator and assigning each value a specific option
