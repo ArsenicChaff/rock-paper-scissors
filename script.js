@@ -41,7 +41,7 @@ let comInput;
 let userWinsPoint = 'Congrats, you win a point!'
 let comWinsPoint = 'Sorry, computer won that round!'
 let userWon = 'Congrats! You Win!'
-let comWon = 'Sorry, try again next time!'
+let comWon = 'Sorry, computer wins! Try again next time.'
 let gameRound = 0
 let userPointStatus = 0
 let comPointStatus = 0
@@ -53,41 +53,69 @@ playTheGame();
 //block of code below to carry the rules of the game and loop how many rounds/how many points to win
 function playTheGame () {
     while (gameRound <= 5) {
+        if (gameRound >= 5) {
+            break;
+        }
         runGame();
         if (userInput === false) {
             console.log('Program terminated.');
             gameRound = 10;
             break;
-        } else if (userPointStatus >= 3) {
-            console.log(userWon)
-            resetPoints();
-            break;
-        } else if (comPointStatus >= 3) {
-            console.log(comWon);
-            resetPoints();
-            break;
-        } else if (gameRound >= 5) {
-            console.log('Game over!')
-            if (userPointStatus === comPointStatus) {
-                console.log("It's a tie!! Try again?")
-                resetPoints();
-                break;
-            } else if (userPointStatus > comPointStatus) {
-                console.log(userWon)
-                resetPoints();
-                break;
-            } else if (comPointStatus > userPointStatus) {
-                console.log(comWon);
-                resetPoints();
-                break;
-            } else {
-                console.log('unknown result. error');
-                break;
-            }
         }
+        checkWhoWins();
+        // if (gameRound >= 5) {
+        //     if (userPointStatus === comPointStatus) {
+        //         console.log("It's a tie!! Try again?")
+        //         resetPoints();
+        //         break;
+        //     } else if (userPointStatus > comPointStatus) {
+        //         console.log(userWon)
+        //         resetPoints();
+        //         break;
+        //     } else if (comPointStatus > userPointStatus) {
+        //         console.log(comWon);
+        //         resetPoints();
+        //         break;
+        //     } else {
+        //         console.log('unknown result. error');
+        //         break;
+        //     }
+        // }
     }
+    resetPoints();
 }
 //end block
+
+//code of block to see who wins
+function checkWhoWins () {
+    if (gameRound >= 5) {
+        console.log('Game over!')
+        if (userPointStatus === comPointStatus) {
+                    console.log("It's a tie!! Try again?")
+            //         break;
+            return;
+        } else if (userPointStatus > comPointStatus) {
+            console.log(userWon)
+            // break;
+            return;
+        } else if (comPointStatus > userPointStatus) {
+            console.log(comWon);
+            // break;
+            return;
+        } else {
+            return;
+        }
+    } else if (userPointStatus >= 3) {
+            console.log(userWon)
+            return;
+    } else if (comPointStatus >= 3) {
+            console.log(comWon);
+            return;
+    }
+}
+
+
+
 
 //block of code to run a round of the game
 function runGame() {
