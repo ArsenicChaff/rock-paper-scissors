@@ -47,7 +47,7 @@ let userPointStatus = 0
 let comPointStatus = 0
     //end variables
 
-playTheGame()
+playTheGame();
 //end overall
 
 //block of code below to carry the rules of the game and loop how many rounds/how many points to win
