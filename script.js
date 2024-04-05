@@ -65,6 +65,7 @@ function playTheGame () {
         checkWhoWins();
     }
     resetNums();
+    userInput = 'temp';
 }
 //end block
 
