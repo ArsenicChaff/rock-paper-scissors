@@ -56,33 +56,15 @@ function playTheGame () {
         if (gameRound >= 5) {
             break;
         }
-        runGame();
+        runRound();
         if (userInput === false) {
             console.log('Program terminated.');
             gameRound = 10;
             break;
         }
         checkWhoWins();
-        // if (gameRound >= 5) {
-        //     if (userPointStatus === comPointStatus) {
-        //         console.log("It's a tie!! Try again?")
-        //         resetPoints();
-        //         break;
-        //     } else if (userPointStatus > comPointStatus) {
-        //         console.log(userWon)
-        //         resetPoints();
-        //         break;
-        //     } else if (comPointStatus > userPointStatus) {
-        //         console.log(comWon);
-        //         resetPoints();
-        //         break;
-        //     } else {
-        //         console.log('unknown result. error');
-        //         break;
-        //     }
-        // }
     }
-    resetPoints();
+    resetNums();
 }
 //end block
 
@@ -91,16 +73,13 @@ function checkWhoWins () {
     if (gameRound >= 5) {
         console.log('Game over!')
         if (userPointStatus === comPointStatus) {
-                    console.log("It's a tie!! Try again?")
-            //         break;
+            console.log("It's a tie!! Try again?")
             return;
         } else if (userPointStatus > comPointStatus) {
             console.log(userWon)
-            // break;
             return;
         } else if (comPointStatus > userPointStatus) {
             console.log(comWon);
-            // break;
             return;
         } else {
             return;
@@ -113,12 +92,10 @@ function checkWhoWins () {
             return;
     }
 }
-
-
-
+//end block
 
 //block of code to run a round of the game
-function runGame() {
+function runRound() {
     askUser();
     if (userInput === false) {
         return;
@@ -154,16 +131,16 @@ function runGame() {
             userPointStatus++;
         }
     }
-    let temp = 5 - parseInt(gameRound)
+    let numOfGames = 5 - parseInt(gameRound)
     console.log('The user has ' + userPointStatus + ' points.');
     console.log('The computer has ' + comPointStatus + ' points.');
-    console.log('There are ' + temp + ' games left.');
+    console.log('There are ' + numOfGames + ' games left.');
     console.log(' ')
 }
 //end block
 
 //block of code below to reset all of the points at the end of a game
-function resetPoints() {
+function resetNums() {
     gameRound = 0;
     userPointStatus = 0;
     comPointStatus = 0;
