@@ -32,20 +32,47 @@
 //  break the loop when computer wins 3 times
 //  break the loop if the game runs 5 times. (should be impossible, but just in case)
 
+
+// userInput = prompt('Rock, paper, or scissors?').toLowerCase()
+// function userInputCheck () {
+//     if ((userInput === 'rock') || (userInput === 'paper') || (userInput === 'scissors')) {
+//         return userInput;
+//     } else {
+//         return false;
+//     }
+// }
+// console.log(userInput);
+
+//ask the user for an input to be rock, paper, or scissors
+//  turn that input to all lower case
+//  check that input against rock, paper and scissors
+//      if false, ask for a correct input
+//      else nothing
 let userInput;
-// userInput = userInput.toLowerCase()
-function userInputSelection () {
-    userInput = prompt("Rock, paper, or scissors?")
-    userInput = userInput.toLowerCase();
-    if ((userInput === 'rock') || (userInput === 'paper') || (userInput === 'scissors')) {
-        return userInput && true;
-    } else {
-        console.log('please enter a correct option');
-        return false;
+let userInputCount = 0
+function askUser () {
+    while ((userInput != 'rock') || (userInput != 'paper') || (userInput != 'scissors')) {
+        userInput = prompt('Rock, paper, or scissors?').toLowerCase();
+        if ((userInput === 'rock') || (userInput === 'paper') || (userInput === 'scissors')) {
+            break;
+        } else if (userInputCount >= 4) {
+            console.log('Terminating program')
+            break;
+        } else {
+            userInputCount++;
+            console.log('you have ' + userInputCount + ' tries. Terminate program at 5.')
+        }
     }
 }
-userInput = userInputSelection()
-console.log(userInput);
+askUser()
+console.log(userInput)
+
+
+
+
+
+
+
 
 
 //block of code below build the computer variable using a random number generator and assigning each value a specific option
