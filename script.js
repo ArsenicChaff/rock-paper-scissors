@@ -38,16 +38,109 @@
 let userInput;
 let userInputCount = 0;
 let comInput;
+let userWinsPoint = 'Congrats, you win a point!'
+let comWinsPoint = 'Sorry, computer won that round!'
+let userWon = 'Congrats! You Win!'
+let comWon = 'Sorry, try again next time!'
+let gameRound = 0
+let userPointStatus = 0
+let comPointStatus = 0
     //end variables
-askUser();
-console.log(userInput);
-askCom();
-console.log(comInput)
 
-
-
-
+playTheGame()
 //end overall
+
+//block of code below to carry the rules of the game and loop how many rounds/how many points to win
+function playTheGame () {
+    while (gameRound <= 5) {
+        runGame();
+        if (userInput === false) {
+            console.log('Program terminated.');
+            gameRound = 10;
+            break;
+        } else if (userPointStatus >= 3) {
+            console.log(userWon)
+            resetPoints();
+            break;
+        } else if (comPointStatus >= 3) {
+            console.log(comWon);
+            resetPoints();
+            break;
+        } else if (gameRound >= 5) {
+            console.log('Game over!')
+            if (userPointStatus === comPointStatus) {
+                console.log("It's a tie!! Try again?")
+                resetPoints();
+                break;
+            } else if (userPointStatus > comPointStatus) {
+                console.log(userWon)
+                resetPoints();
+                break;
+            } else if (comPointStatus > userPointStatus) {
+                console.log(comWon);
+                resetPoints();
+                break;
+            } else {
+                console.log('unknown result. error');
+                break;
+            }
+        }
+    }
+}
+//end block
+
+//block of code to run a round of the game
+function runGame() {
+    askUser();
+    if (userInput === false) {
+        return;
+    }
+    console.log('User chose: ' + userInput);
+    askCom();
+    console.log('Computer chose: ' + comInput);
+    gameRound++;
+    if (userInput === comInput) {
+        console.log("it's a tie, no points!");
+    } else if (userInput === 'rock') {
+        if (comInput === 'paper') {
+            console.log(comWinsPoint);
+            comPointStatus++;
+        } else if (comInput === 'scissors') {
+            console.log(userWinsPoint);
+            userPointStatus++;
+        }
+    } else if (userInput === 'paper') {
+        if (comInput === 'rock') {
+            console.log(userWinsPoint);
+            userPointStatus++;
+        } else if (comInput === 'scissors') {
+            console.log(comWinsPoint);
+            comPointStatus++;
+        }
+    } else if (userInput === 'scissors') {
+        if (comInput === 'rock') {
+            console.log(comWinsPoint);
+            comPointStatus++;
+        } else if (comInput === 'paper') {
+            console.log(userWinsPoint);
+            userPointStatus++;
+        }
+    }
+    let temp = 5 - parseInt(gameRound)
+    console.log('The user has ' + userPointStatus + ' points.');
+    console.log('The computer has ' + comPointStatus + ' points.');
+    console.log('There are ' + temp + ' games left.');
+    console.log(' ')
+}
+//end block
+
+//block of code below to reset all of the points at the end of a game
+function resetPoints() {
+    gameRound = 0;
+    userPointStatus = 0;
+    comPointStatus = 0;
+}
+//end block
 
 //block of code below build the computer variable using a random number generator and assigning each value a specific option
 function askCom () {
@@ -72,6 +165,7 @@ function askUser () {
             break;
         } else if (userInputCount >= 4) {
             console.log('Terminating program')
+            userInput = false;
             break;
         } else {
             userInputCount++;
