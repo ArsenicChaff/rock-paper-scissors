@@ -33,23 +33,38 @@
 //  break the loop if the game runs 5 times. (should be impossible, but just in case)
 
 
-// userInput = prompt('Rock, paper, or scissors?').toLowerCase()
-// function userInputCheck () {
-//     if ((userInput === 'rock') || (userInput === 'paper') || (userInput === 'scissors')) {
-//         return userInput;
-//     } else {
-//         return false;
-//     }
-// }
-// console.log(userInput);
-
-//ask the user for an input to be rock, paper, or scissors
-//  turn that input to all lower case
-//  check that input against rock, paper and scissors
-//      if false, ask for a correct input
-//      else nothing
+//overall
+    //variables
 let userInput;
-let userInputCount = 0
+let userInputCount = 0;
+let comInput;
+    //end variables
+askUser();
+console.log(userInput);
+askCom();
+console.log(comInput)
+
+
+
+
+//end overall
+
+//block of code below build the computer variable using a random number generator and assigning each value a specific option
+function askCom () {
+    let randomVar = Math.floor(Math.random() * 3);
+    if (randomVar === 0) {
+        comInput = 'rock';
+    } else if (randomVar === 1) {
+        comInput = 'paper';
+    } else if (randomVar === 2) {
+        comInput = 'scissors';
+    } else {
+        console.log('comInput error')
+    }
+}
+//end block
+
+//block of code below is the function to prompt the user for an input, checks that input, and counts down false attempts
 function askUser () {
     while ((userInput != 'rock') || (userInput != 'paper') || (userInput != 'scissors')) {
         userInput = prompt('Rock, paper, or scissors?').toLowerCase();
@@ -64,28 +79,4 @@ function askUser () {
         }
     }
 }
-askUser()
-console.log(userInput)
-
-
-
-
-
-
-
-
-
-//block of code below build the computer variable using a random number generator and assigning each value a specific option
-let randomVar = Math.floor(Math.random() * 3)
-let comInput;
-if (randomVar === 0) {
-    comInput = 'rock';
-} else if (randomVar === 1) {
-    comInput = 'paper';
-} else if (randomVar === 2) {
-    comInput = 'scissors';
-} else {
-    console.log('comInput error')
-}
-console.log(comInput)
 //end block
